@@ -81,23 +81,6 @@ function pesquisacep(valor) {
     }
 }
 
-function mascara(i,t){
-
-    var v = i.value;
-
-    if(isNaN(v[v.length-1])){
-       i.value = v.substring(0, v.length-1);
-       return;
-    }
-
-    if(t == "cpf"){
-       i.setAttribute("maxlength", "14");
-
-       if (v.length == 3 || v.length == 7) i.value += ".";
-       if (v.length == 11) i.value += "-";
-    }
- }
-
 function is_cpf (c) {
 
   if((c = c.replace(/[^\d]/g,"")).length != 11)
@@ -142,9 +125,9 @@ function fMasc(objeto,mascara) {
     setTimeout("fMascEx()",1)
    }
 
-  function fMascEx() {
-    obj.value=masc(obj.value)
-   }
+function fMascEx() {
+obj.value=masc(obj.value)
+}
 
 function mCPF(cpf){
     cpf=cpf.replace(/\D/g,"")
@@ -158,3 +141,16 @@ cpfCheck = function (el) {
     document.getElementById('cpfResponse').innerHTML = is_cpf(el.value)? '<span style="color:green"><img src="/images/check.png" class="img"></span>' : '<span style="color:red"><img src="/images/close.png" class="img2"></span>';
     if(el.value=='') document.getElementById('cpfResponse').innerHTML = '';
    }
+
+function NASort(a, b) {
+    if (a.innerHTML == 'NA') {
+        return 1;
+    }
+    else if (b.innerHTML == 'NA') {
+        return -1;
+    }
+    return (a.innerHTML > b.innerHTML) ? 1 : -1;
+};
+
+$('#Scurso option').sort(NASort).appendTo('#Scurso');
+

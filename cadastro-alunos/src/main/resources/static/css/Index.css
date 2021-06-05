@@ -210,16 +210,39 @@ width: 10px;
 }
 
 .img-download{
-    text-align: center;
-    align-items: center;
-}
-
-.img-download img{
-    margin-top:20px;
-    margin-right: 18px;
-    height: 35px;
+    text-align: center ;
+    align-items: center ;
 }
 
 .notdisplay{
     display: none;
+}
+
+.img-download a{
+    width: 25vh;
+    height: 40px;
+    background-color:#30b40f;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Poppins;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.img-download a:hover{
+    background-color:#ab63f3;
+    letter-spacing: 1px;
+}
+
+.img-download img{
+    height: 25px;
+    margin-left: 5px;
 }

@@ -43,7 +43,6 @@ h2{
 input{
     font-family: "Poppins";
     font-weight: 500;
-
 }
 
 strong{
@@ -185,5 +184,34 @@ strong{
 
 .link{
     text-decoration:none;
+}
+
+.input_container{
+    position: relative;
+    direction: ltr;
+}
+
+#cpfi{
+    position: relative;
+    padding-right: 25px;
+}
+
+.img{
+    position: absolute;
+    bottom: 8px;
+    width: 14px;
+    height: 14px;
+    right: 6px;
+    margin-right: 8px;
+
+}
+
+.img2{
+    position: absolute;
+    bottom: 9px;
+    width: 13px;
+    height: 13px;
+    right: 6px;
+    margin-right: 8px
 }
 

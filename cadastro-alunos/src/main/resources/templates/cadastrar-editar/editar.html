@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link th:href="@{/css/Editar.css}" rel="stylesheet">
-    <script type="text/javascript" th:src="@{/js/Editar.js}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
     <title>Editando Aluno</title>
+
 </head>
 <body>
 <h2>Editando Aluno</h2>
@@ -21,7 +26,7 @@
             <div class="margem4">
                 <div class="campo tamanho2">
                     <p><Strong>Nome</Strong></p>
-                    <input id="nomei" type="text" placeholder=" Digite seu nome" autocomplete="off" name="nome" th:field="*{nome}"/>
+                    <input id="nomei" type="text" placeholder=" Digite seu nome" maxlength="50" autocomplete="off" name="nome" th:field="*{nome}" required/>
                 </div>
             </div>
 
@@ -30,7 +35,7 @@
         <div class="grid-2">
 
             <div class="campo tamanho1">
-                <p><strong>Sexo</strong></p>
+                <p><strong>Gênero</strong></p>
                 <select id="Ssexo" name="sexo" th:field="*{sexo}">
                     <option value="...">...</option>
                     <option value="Masculino">Masculino</option>
@@ -43,7 +48,7 @@
 
                 <div class="campo tamanho1">
                     <p><strong>Data de Nascimento</strong></p>
-                    <input id="datai" type="date" value="dd-MM-yyyy" name="data_nasc" th:field="*{data_nasc}" required/>
+                    <input id="datai" type="date" value="dd-MM-yyyy" name="data_nasc" th:field="*{data_nasc}" min="1900-01-01" max="2005-01-01" required/>
                 </div>
 
             </div>
@@ -51,8 +56,10 @@
             <div class="margem2">
                 <div class="campo tamanho1 cep-mask">
                     <p><strong>CPF</strong></p>
-                    <input id="cpfi" type="text" placeholder="Digite seu CPF" maxlength="14" autocomplete="off" oninput="mascara(this, 'cpf')" name="cpf" th:field="*{cpf}"/>
-
+                    <div class="input_container">
+                        <input id="cpfi" type="text" placeholder="Digite seu CPF" maxlength="14" value="" onkeyup="cpfCheck(this)" onkeydown="javascript: fMasc( this, mCPF );" autocomplete="off" name="cpf" th:field="*{cpf}"/>
+                        <span id="cpfResponse"></span>
+                    </div>
                 </div>
             </div>
 
@@ -155,5 +162,6 @@
     </form>
 
 </main>
+<script type="text/javascript" th:src="@{/js/Editar.js}"></script>
 </body>
 </html>

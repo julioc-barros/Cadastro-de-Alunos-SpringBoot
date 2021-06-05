@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
   <link th:href="@{css/Cadastro.css}" rel="stylesheet">
 
 
@@ -24,7 +26,7 @@
       <div class="">
         <div class="campo tamanho2 margem4">
           <p><Strong>Nome</Strong></p>
-          <input id="nomei" type="text" placeholder=" Digite seu nome" autocomplete="off" name="nome" th:field="*{nome}"/>
+          <input id="nomei" type="text" placeholder=" Digite seu nome" maxlength="50" autocomplete="off" name="nome" th:field="*{nome}" required/>
         </div>
       </div>
 
@@ -33,8 +35,8 @@
     <div class="grid-2">
 
       <div class="campo tamanho1">
-        <p><strong>Sexo</strong></p>
-        <select id="Ssexo" name="sexo" th:field="*{sexo}">
+        <p><strong>Gênero</strong></p>
+        <select id="Ssexo" name="sexo" th:field="*{sexo}" required>
           <option value="...">...</option>
           <option value="Masculino">Masculino</option>
           <option value="Feminino">Feminino</option>
@@ -46,14 +48,14 @@
 
         <div class="campo tamanho1">
           <p><strong>Data de Nascimento</strong></p>
-          <input id="datai" type="date" value="dd-MM-yyyy" name="data_nasc" th:field="*{data_nasc}" required/>
+          <input id="datai" type="date" value="dd-MM-yyyy" name="data_nasc" th:field="*{data_nasc}" min="1900-01-01" max="2005-01-01" required/>
         </div>
 
       </div>
 
       <div class="margem2">
         <div class="campo tamanho1 cep-mask">
-          <p><strong>CPF</strong></p>
+          <p><strong>CPF</strong><span class="s-opcional"> (Opcional)</span></p>
           <div class="input_container">
           <input id="cpfi" type="text" placeholder="Digite seu CPF" maxlength="14" value="" onkeyup="cpfCheck(this)" onkeydown="javascript: fMasc( this, mCPF );" autocomplete="off" name="cpf" th:field="*{cpf}"/>
           <span id="cpfResponse"></span>
@@ -67,7 +69,7 @@
 
       <div class="campo tamanho2">
         <p><strong>Email</strong></p>
-        <input id="emaili" type="text" placeholder="Digite seu Email" autocomplete="off" name="email" th:field="*{email}"/>
+        <input id="emaili" type="text" placeholder="Digite seu Email" maxlength="40" autocomplete="off" name="email" th:field="*{email}" required/>
       </div>
 
     </div>
@@ -101,18 +103,18 @@
 
       <div class="campo tamanho1">
         <p><strong>CEP</strong></p>
-        <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
-               onblur="pesquisacep(this.value);" placeholder="Digite seu CEP" autocomplete="off" th:field="*{endereco.cep}"/>
+        <input name="cep" type="text" id="cep" value="" size="10" maxlength="8"
+               onblur="pesquisacep(this.value);" placeholder="Digite seu CEP" autocomplete="off" th:field="*{endereco.cep}" required/>
       </div>
 
       <div class="campo margem3">
         <p><strong>UF</strong></p>
-        <input name="uf" type="text" id="uf" size="2" class="ufi" placeholder="..." autocomplete="off" th:field="*{endereco.uf}"/>
+        <input name="uf" type="text" id="uf" size="2" class="ufi" placeholder="..." autocomplete="off" th:field="*{endereco.uf}" readonly/>
       </div>
 
       <div class="campo tamanho margem3">
         <p><strong>Cidade</strong></p>
-        <input name="cidade" type="text" id="cidade" size="40" class="scidade" placeholder="..." autocomplete="off" th:field="*{endereco.cidade}" />
+        <input name="cidade" type="text" id="cidade" size="40" class="scidade" placeholder="..." autocomplete="off" th:field="*{endereco.cidade}" readonly/>
       </div>
 
     </div>
@@ -121,12 +123,12 @@
 
       <div class="campo tamanho">
         <p><strong>Bairro</strong></p>
-        <input name="bairro" type="text" id="bairro" size="40" class="Sbairro" placeholder="..." value="" autocomplete="off" th:field="*{endereco.bairro}" />
+        <input name="bairro" type="text" id="bairro" size="40" class="Sbairro" placeholder="..." value="" autocomplete="off" th:field="*{endereco.bairro}" readonly/>
       </div>
 
       <div class="campo tamanho margem1">
         <p><strong>Rua</strong></p>
-        <input name="rua" type="text" id="rua" size="60" class="ruai" placeholder="..." value="" autocomplete="off" th:field="*{endereco.rua}" />
+        <input name="rua" type="text" id="rua" size="60" class="ruai" placeholder="..." value="" autocomplete="off" th:field="*{endereco.rua}" readonly/>
       </div>
 
     </div>

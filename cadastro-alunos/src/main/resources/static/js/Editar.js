@@ -39,7 +39,6 @@ function meu_callback(conteudo) {
     }
 }
 
-
 function pesquisacep(valor) {
 
     //Nova variável "cep" somente com dígitos.
@@ -82,18 +81,76 @@ function pesquisacep(valor) {
     }
 }
 
-function mascara(i,t){
+function is_cpf (c) {
 
-    var v = i.value;
+  if((c = c.replace(/[^\d]/g,"")).length != 11)
+    return false
 
-    if(isNaN(v[v.length-1])){
-       i.value = v.substring(0, v.length-1);
-       return;
+  if (c == "00000000000")
+    return false;
+
+  var r;
+  var s = 0;
+
+  for (i=1; i<=9; i++)
+    s = s + parseInt(c[i-1]) * (11 - i);
+
+  r = (s * 10) % 11;
+
+  if ((r == 10) || (r == 11))
+    r = 0;
+
+  if (r != parseInt(c[9]))
+    return false;
+
+  s = 0;
+
+  for (i = 1; i <= 10; i++)
+    s = s + parseInt(c[i-1]) * (12 - i);
+
+  r = (s * 10) % 11;
+
+  if ((r == 10) || (r == 11))
+    r = 0;
+
+  if (r != parseInt(c[10]))
+    return false;
+
+  return true;
     }
 
-    if(t == "cpf"){
-       i.setAttribute("maxlength", "14");
-       if (v.length == 3 || v.length == 7) i.value += ".";
-       if (v.length == 11) i.value += "-";
-    }
+function fMasc(objeto,mascara) {
+    obj=objeto
+    masc=mascara
+    setTimeout("fMascEx()",1)
+   }
+
+  function fMascEx() {
+    obj.value=masc(obj.value)
+   }
+
+function mCPF(cpf){
+    cpf=cpf.replace(/\D/g,"")
+    cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+    cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+    cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+    return cpf
  }
+
+cpfCheck = function (el) {
+    document.getElementById('cpfResponse').innerHTML = is_cpf(el.value)? '<span style="color:green"><img src="/images/check.png" class="img"></span>' : '<span style="color:red"><img src="/images/close.png" class="img2"></span>';
+    if(el.value=='') document.getElementById('cpfResponse').innerHTML = '';
+   }
+
+function NASort(a, b) {
+    if (a.innerHTML == 'NA') {
+        return 1;
+    }
+    else if (b.innerHTML == 'NA') {
+        return -1;
+    }
+    return (a.innerHTML > b.innerHTML) ? 1 : -1;
+};
+
+$('#Scurso option').sort(NASort).appendTo('#Scurso');
+
