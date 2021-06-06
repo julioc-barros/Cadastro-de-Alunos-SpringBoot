@@ -143,10 +143,10 @@ cpfCheck = function (el) {
    }
 
 function NASort(a, b) {
-    if (a.innerHTML == 'NA') {
+    if (a.innerHTML == 'Selecione sua Opção') {
         return 1;
     }
-    else if (b.innerHTML == 'NA') {
+    else if (b.innerHTML == 'Selecione sua Opção') {
         return -1;
     }
     return (a.innerHTML > b.innerHTML) ? 1 : -1;

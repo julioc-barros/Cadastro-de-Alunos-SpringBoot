@@ -142,15 +142,3 @@ cpfCheck = function (el) {
     if(el.value=='') document.getElementById('cpfResponse').innerHTML = '';
    }
 
-function NASort(a, b) {
-    if (a.innerHTML == 'NA') {
-        return 1;
-    }
-    else if (b.innerHTML == 'NA') {
-        return -1;
-    }
-    return (a.innerHTML > b.innerHTML) ? 1 : -1;
-};
-
-$('#Scurso option').sort(NASort).appendTo('#Scurso');
-
