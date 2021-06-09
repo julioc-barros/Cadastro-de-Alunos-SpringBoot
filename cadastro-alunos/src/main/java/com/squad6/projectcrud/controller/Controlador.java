@@ -60,7 +60,7 @@ public class Controlador {
         return "index";
     }
 
-    @GetMapping(value = "/{matricula}")
+    @GetMapping("/{matricula}")
     public String userView(@PathVariable("matricula") Integer matricula, Model model){
 
         Info_alunos aluno = repoalunos.findById(matricula).get();
