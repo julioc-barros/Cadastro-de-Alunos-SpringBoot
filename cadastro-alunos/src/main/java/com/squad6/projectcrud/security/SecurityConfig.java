@@ -1,5 +1,6 @@
 package com.squad6.projectcrud.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,8 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure (HttpSecurity http) throws Exception{
         http.authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
-                .antMatchers("/cadastrar").authenticated()
-                .antMatchers("/").authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -45,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("user")
                 .password(passwordEncoder().encode("user"))
                 .authorities("USER")
-            .and()
+                .and()
                 .withUser("admin")
                 .password(passwordEncoder().encode("admin"))
                 .authorities("ADMIN");
