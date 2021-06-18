@@ -4,10 +4,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -18,13 +17,20 @@ public class Usuario implements UserDetails {
     private String nome;
     private String senha;
 
+    @ManyToMany
+    @JoinTable(name = "usuario_roles",
+                joinColumns = @JoinColumn(name = "usuario_id"),
+                inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
+
     public Usuario() {
     }
 
-    public Usuario(String login, String nome, String senha) {
+    public Usuario(String login, String nome, String senha, List<Role> roles) {
         this.login = login;
         this.nome = nome;
         this.senha = senha;
+        this.roles = roles;
     }
 
     public String getLogin() {
@@ -52,9 +58,17 @@ public class Usuario implements UserDetails {
         this.senha = passwordEncoder.encode(senha);
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return (Collection<? extends GrantedAuthority>) this.roles;
     }
 
     @Override

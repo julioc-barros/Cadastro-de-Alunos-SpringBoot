@@ -18,6 +18,7 @@
 <body>
 
 <div class="img-logout">
+  <a sec:authorize="hasRole('ROLE_ADMIN')" href="/"> <img src="images/adicionar.png" alt=""></a>
   <a href="/logout"> <img src="images/botao-logout.png" alt=""></a>
 </div>
 
@@ -39,6 +40,7 @@
 
 </div>
 <!--fim header do site-->
+
 
 <!--caixa de listagem-->
 <div class="box-lista">
